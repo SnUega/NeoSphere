@@ -472,7 +472,7 @@
         });
         if (h2) tlCta.to(h2, { autoAlpha: 1, y: 0, duration: 1, ease: 'power2.out' }, 0);
         if (p2) tlCta.to(p2, { autoAlpha: 1, y: 0, duration: 1, ease: 'power2.out' }, 0.4);
-        if (btn2) tlCta.to(btn2, { autoAlpha: 1, y: 0, duration: 0.8, ease: 'power2.out' }, 0.6 + 0.2);
+        if (btn2) tlCta.to(btn2, { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power2.out' }, 0.6 + 0.2);
       }
 
       // Ecosystem cards: cascade reveal from top (DOM order) on scroll

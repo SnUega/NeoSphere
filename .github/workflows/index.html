@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EcoSphere - Your Life Ecosystem</title>
+<link rel="apple-touch-icon" sizes="180x180" href="./img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="./img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="./img/favicon-16x16.png">
+<link rel="manifest" href="./img/site.webmanifest">
+<link rel="stylesheet" href="./css/style.css?v=6">
+</head>
+<body>
+<!-- Header -->
+<header>
+<div class="container header-container">
+<a class="logo" href="#" aria-label="EcoSphere">
+  <img src="./img/logo-ginger.PNG" alt="EcoSphere" style="max-height:50px;width:auto;">
+</a>
+<nav>
+<ul>
+<li><a href="#ecosystem" data-i18n="nav.ecosystem">Ecosystem</a></li>
+<li><a href="#courses" data-i18n="nav.courses">Courses</a></li>
+<li><a href="#contact" data-i18n="nav.contacts">Contacts</a></li>
+</ul>
+</nav>
+<div id="lang-switch" class="lang-switch" aria-label="Language selection">
+  <button id="lang-btn" class="lang-btn" type="button" aria-haspopup="listbox" aria-expanded="false">EN</button>
+  <ul id="lang-list" class="lang-list" role="listbox" aria-label="Language list">
+    <li role="option" data-lang="en" aria-selected="true">EN</li>
+    <li role="option" data-lang="ru">RU</li>
+    <li role="option" data-lang="ro">RO</li>
+  </ul>
+</div>
+</div>
+</header>
+
+<!-- Hero Section -->
+<section class="hero">
+<div class="container">
+<h1 data-i18n="hero.title">Unified ecosystem for all your needs</h1>
+<p data-i18n="hero.subtitle">From tech repair to professional training - comprehensive solutions for modern life</p>
+<a href="#courses" class="cta-button" data-i18n="hero.cta" data-open="cta-modal">Explore opportunities</a>
+</div>
+</section>
+
+<!-- Ecosystem Section -->
+<section id="ecosystem" class="ecosystem">
+<div class="container">
+<h2 class="section-title" data-i18n="ecosystem.title">Our Service Ecosystem</h2>
+<div class="services-grid">
+<div class="service-card">
+<div class="service-icon">🔧</div>
+<h3 data-i18n="services.repair.title">Tech Repair</h3>
+<p data-i18n="services.repair.desc">Professional repair of any equipment with warranty and quality parts</p>
+</div>
+<div class="service-card">
+<div class="service-icon">💾</div>
+<h3 data-i18n="services.parts.title">Training</h3>
+<p data-i18n="services.parts.desc">Courses in cutting-edge fields with practical knowledge from experts</p>
+</div>
+<div class="service-card">
+<div class="service-icon">🛒</div>
+<h3 data-i18n="services.goods.title">Products & Services</h3>
+<p data-i18n="services.goods.desc">Wide range of products and services for all areas of life</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Courses Section -->
+<section id="courses" class="courses">
+<div class="container">
+<h2 class="section-title" data-i18n="courses.title">Transform Your Future</h2>
+<div class="course-container">
+<!-- Course 1 -->
+<div class="course-card">
+<div class="course-content">
+<h3 class="course-title" data-i18n="course1.title">Foreign Languages</h3>
+<p class="course-subtitle" data-i18n="course1.subtitle">Discover a world without borders</p>
+<span class="course-highlight" data-i18n="course1.highlight">Essential in the modern world</span>
+<p data-i18n="course1.intro">In the era of globalization, mastering foreign languages is not an advantage but a necessity. Our courses will help you:</p>
+<ul class="benefits-list">
+<li data-i18n="course1.benefits.0">Access international career opportunities</li>
+<li data-i18n="course1.benefits.1">Travel freely without language barriers</li>
+<li data-i18n="course1.benefits.2">Study original materials and world culture</li>
+<li data-i18n="course1.benefits.3">Develop cognitive abilities and memory</li>
+</ul>
+<p><strong data-i18n="course1.note.title">Interactive Learning:</strong> <span data-i18n="course1.note.body">Real dialogues, games, and communication with native speakers</span></p>
+<a href="#" class="cta-button" data-i18n="courses.cta" data-open="cta-modal">Start Learning</a>
+</div>
+
+</div>
+<!-- Course 2 -->
+<div class="course-card">
+<div class="course-content">
+<h3 class="course-title" data-i18n="course2.title">Programming</h3>
+<p class="course-subtitle" data-i18n="course2.subtitle">Create future technologies</p>
+<span class="course-highlight" data-i18n="course2.highlight">Key skill of the 21st century</span>
+<p data-i18n="course2.intro">Digital transformation covers all areas of life. Programming has become the new literacy:</p>
+<ul class="benefits-list">
+<li data-i18n="course2.benefits.0">Access to the most in-demand and high-paying professions</li>
+<li data-i18n="course2.benefits.1">Opportunity to create your own projects and startups</li>
+<li data-i18n="course2.benefits.2">Development of logical and algorithmic thinking</li>
+<li data-i18n="course2.benefits.3">Automation of routine tasks in work and life</li>
+</ul>
+<p><strong data-i18n="course2.note.title">Practical Training:</strong> <span data-i18n="course2.note.body">Real projects, hackathons, and internships</span></p>
+<a href="#" class="cta-button" data-i18n="courses.cta" data-open="cta-modal">Start Learning</a>
+</div>
+
+</div>
+<!-- Course 3 -->
+<div class="course-card">
+<div class="course-content">
+<h3 class="course-title" data-i18n="course3.title">Financial Literacy</h3>
+<p class="course-subtitle" data-i18n="course3.subtitle">Manage your resources effectively</p>
+<span class="course-highlight" data-i18n="course3.highlight">Foundation of personal freedom</span>
+<p data-i18n="course3.intro">In conditions of economic instability, financial literacy is your main protector:</p>
+<ul class="benefits-list">
+<li data-i18n="course3.benefits.0">Avoid debt traps and financial mistakes</li>
+<li data-i18n="course3.benefits.1">Learn to create passive income sources</li>
+<li data-i18n="course3.benefits.2">Plan budgets and achieve financial goals</li>
+<li data-i18n="course3.benefits.3">Protect savings from inflation</li>
+<li data-i18n="course3.benefits.4">Understanding investment instruments and risks</li>
+</ul>
+<p><strong data-i18n="course3.note.title">Applied Learning:</strong> <span data-i18n="course3.note.body">Analysis of real cases, investment simulators</span></p>
+<a href="#" class="cta-button" data-i18n="courses.cta" data-open="cta-modal">Start Learning</a>
+</div>
+
+</div>
+</div>
+</div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+<div class="container">
+<h2 data-i18n="cta.title">Ready to change your life?</h2>
+<p data-i18n="cta.body">Join the ecosystem that solves all your tasks in one place - from household services to professional development</p>
+<a href="#contact" class="cta-button" data-i18n="cta.cta" data-open="cta-modal">Join Now</a>
+</div>
+</section>
+
+<!-- Footer -->
+<footer id="contact">
+<div class="container">
+<div class="footer-content">
+<div class="footer-column">
+<h3>EcoSphere</h3>
+<p data-i18n="footer.brand.desc">Comprehensive service ecosystem for modern life. We make complex things simple and necessities accessible.</p>
+</div>
+<div class="footer-column">
+<h3 data-i18n="footer.directions.title">Directions</h3>
+<ul class="footer-links">
+<li><a href="#ecosystem" data-i18n="footer.directions.items.0">Tech Repair</a></li>
+<li><a href="#services" data-i18n="footer.directions.items.2">Investments</a></li>
+<li><a href="#courses" data-i18n="footer.directions.items.3">Training Courses</a></li>
+<li><a href="#services" data-i18n="footer.directions.items.4">Products & Services</a></li>
+</ul>
+</div>
+<div class="footer-column">
+<h3 data-i18n="footer.contacts.title">Contacts</h3>
+<ul class="footer-links">
+<li><a href="tel:+37360504199">+373 605 04 199</a></li>
+<li><a href="mailto:neoconsult.partners@gmail.com">neoconsult.partners@gmail.com</a></li>
+<li>Orhei, Scrisului Latin 10</li>
+</ul>
+</div>
+<div class="footer-column">
+<h3 data-i18n="footer.courses.title">Courses</h3>
+<ul class="footer-links">
+<li><a href="#courses" data-i18n="footer.courses.items.0">Foreign Languages</a></li>
+<li><a href="#courses" data-i18n="footer.courses.items.1">Programming</a></li>
+<li><a href="#courses" data-i18n="footer.courses.items.2">Financial Literacy</a></li>
+<li><a href="#courses" data-i18n="footer.courses.items.3">Interactive Learning</a></li>
+</ul>
+</div>
+</div>
+<div class="copyright">
+<span>© 2025 NeoCorp. All rights reserved.</span>
+</div>
+</div>
+</footer>
+
+<!-- Modals -->
+<div id="cta-modal" class="modal" aria-hidden="true">
+<div class="modal-backdrop" data-close></div>
+<div class="modal-window glass">
+<button class="modal-close" type="button" data-close aria-label="Close">×</button>
+<form id="cta-form" class="feedback-form" action="https://formspree.io/f/manbbgzr" method="POST">
+<h3 data-i18n="modal.form.title">Submit Application</h3>
+<label>
+<span data-i18n="form.name">Name</span>
+<input type="text" name="name" placeholder="Your name" data-i18n-placeholder="form.placeholder.name" required>
+</label>
+<label>
+<span data-i18n="form.phone">Phone</span>
+<input type="tel" name="phone" placeholder="Your phone number" data-i18n-placeholder="form.placeholder.phone" required>
+</label>
+<button type="submit" class="cta-button" data-i18n="form.submit">Submit</button>
+</form>
+</div>
+</div>
+
+<div id="confirm-modal" class="modal" aria-hidden="true">
+<div class="modal-backdrop" data-close></div>
+<div class="modal-window glass confirm-window">
+<p data-i18n="confirm.message">Application submitted. We will contact you shortly.</p>
+<button id="confirm-close" class="confirm-close" type="button" data-close aria-label="Close">
+<span class="confirm-close-label">×</span>
+<span id="progress-ring" class="progress-ring" aria-hidden="true"></span>
+</button>
+</div>
+</div>
+
+  <!-- Scroll to top (mobile) -->
+  <button id="scroll-top" class="scroll-top" type="button" aria-label="Scroll to top">↑</button>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="./js/main.js?v=2" defer></script>
+</body>
+</html>

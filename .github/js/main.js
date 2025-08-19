@@ -9,6 +9,8 @@
   const confirmClose = qs('#confirm-close');
   const progressRing = qs('#progress-ring');
   const scrollTopBtn = qs('#scroll-top');
+  const imageModal = qs('#image-modal');
+  const imageModalImg = qs('#image-modal-img');
   const langSwitch = qs('#lang-switch');
   const langBtn = qs('#lang-btn');
   const langList = qs('#lang-list');
@@ -65,6 +67,9 @@
       'course3.note.title': 'Прикладное обучение:',
       'course3.note.body': 'Разбор реальных кейсов, симуляторы инвестиций',
       'courses.cta': 'Начать обучение',
+      'webdev.title': 'Мы также создаем сайты',
+      'webdev.visit': 'Открыть сайт',
+      'webdev.facebook': 'Facebook',
       'cta.title': 'Готовы изменить свою жизнь?',
       'cta.body': 'Присоединяйтесь к экосистеме, которая решает все ваши задачи в одном месте — от бытового сервиса до профессионального развития',
       'cta.cta': 'Присоединиться сейчас',
@@ -143,6 +148,9 @@
       'course3.note.title': 'Applied learning:',
       'course3.note.body': 'Real case analysis and investment simulators',
       'courses.cta': 'Start learning',
+      'webdev.title': 'We also create websites',
+      'webdev.visit': 'Open site',
+      'webdev.facebook': 'Facebook',
       'cta.title': 'Ready to change your life?',
       'cta.body': 'Join the ecosystem that solves all your tasks in one place — from household service to professional development',
       'cta.cta': 'Join now',
@@ -221,6 +229,9 @@
       'course3.note.title': 'Învățare aplicată:',
       'course3.note.body': 'Analiza cazurilor reale și simulatoare de investiții',
       'courses.cta': 'Începe învățarea',
+      'webdev.title': 'Creăm și site-uri web',
+      'webdev.visit': 'Deschide site-ul',
+      'webdev.facebook': 'Facebook',
       'cta.title': 'Ești gata să-ți schimbi viața?',
       'cta.body': 'Alătură-te ecosistemului care rezolvă totul într-un singur loc — de la servicii casnice la dezvoltare profesională',
       'cta.cta': 'Alătură-te acum',
@@ -358,6 +369,16 @@
     })(start);
   }
   if (confirmClose) confirmClose.addEventListener('click', () => closeModal(confirmModal));
+
+  // Image lightbox: open on web-shot click
+  document.addEventListener('click', (e) => {
+    const shot = e.target.closest('.web-shot');
+    if (!shot) return;
+    const img = shot.querySelector('img');
+    if (!img) return;
+    if (imageModalImg) imageModalImg.src = img.src;
+    openModal(imageModal);
+  });
 
   // Scroll-to-top (mobile): show early on scroll, smooth to top on click
   if (scrollTopBtn) {
@@ -533,6 +554,24 @@
               toggleActions: 'play none none reverse'
             }
           });
+        });
+      }
+
+      // Web dev gallery reveal
+      const webShots = gsap.utils.toArray('.web-dev .web-shot');
+      if (webShots && webShots.length) {
+        gsap.set(webShots, { autoAlpha: 0, y: 16 });
+        gsap.to(webShots, {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.7,
+          ease: 'power2.out',
+          stagger: 0.12,
+          scrollTrigger: {
+            trigger: qs('.web-dev .web-gallery') || qs('.web-dev'),
+            start: 'top 85%',
+            toggleActions: 'play none none reverse'
+          }
         });
       }
     }

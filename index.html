@@ -8,7 +8,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon-16x16.png">
 <link rel="manifest" href="./img/site.webmanifest">
-<link rel="stylesheet" href="./css/style.css?v=6">
+<link rel="stylesheet" href="./css/style.css?v=8">
 </head>
 <body>
 <!-- Header -->
@@ -132,6 +132,22 @@
 </div>
 </section>
 
+<!-- Web Development Section -->
+<section id="web-dev" class="web-dev">
+<div class="container">
+<h2 class="section-title grad-title" data-i18n="webdev.title">We also create websites</h2>
+<div class="web-gallery">
+  <div class="web-shot"><img src="./img/site-prev-1.png" alt="NEOSHOP preview 1"></div>
+  <div class="web-shot"><img src="./img/site-prev-2.png" alt="NEOSHOP preview 2"></div>
+  <div class="web-shot"><img src="./img/site-prev-3.png" alt="NEOSHOP preview 3"></div>
+</div>
+<div class="web-cta">
+  <a href="https://neoshop.space" target="_blank" rel="noopener" class="web-link" data-i18n="webdev.visit">Open site</a>
+  <a href="https://www.facebook.com/profile.php?id=61578800602130" target="_blank" rel="noopener" class="web-link" data-i18n="webdev.facebook">Facebook</a>
+</div>
+</div>
+</section>
+
 <!-- CTA Section -->
 <section class="cta-section">
 <div class="container">
@@ -213,12 +229,21 @@
 </div>
 </div>
 
+<!-- Image Lightbox Modal -->
+<div id="image-modal" class="modal" aria-hidden="true">
+<div class="modal-backdrop" data-close></div>
+<div class="modal-window image-window">
+  <button class="modal-close" type="button" data-close aria-label="Close">×</button>
+  <img id="image-modal-img" src="" alt="">
+  </div>
+</div>
+
   <!-- Scroll to top (mobile) -->
   <button id="scroll-top" class="scroll-top" type="button" aria-label="Scroll to top">↑</button>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-  <script src="./js/main.js?v=2" defer></script>
+  <script src="./js/main.js?v=4" defer></script>
 </body>
 </html>

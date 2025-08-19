@@ -500,7 +500,8 @@
           scrollTrigger: {
             trigger: cta,
             start: 'top 85%',
-            toggleActions: 'play none none reverse'
+            toggleActions: 'play none none none',
+            once: true
           }
         });
         if (h2) tlCta.to(h2, { autoAlpha: 1, y: 0, duration: 1, ease: 'power2.out' }, 0);
@@ -582,8 +583,22 @@
               nextTick(step, INITIAL_HOLD_MS);
               window.__stopCtaRotator = () => clearTimeout(typeTimer);
             };
-            startRotator();
-            window.__restartCtaRotator = () => { if (window.__stopCtaRotator) window.__stopCtaRotator(); startRotator(); };
+            if (!window.__ctaRotatorStarted) { startRotator(); window.__ctaRotatorStarted = true; }
+            window.__restartCtaRotator = () => {
+              if (window.__stopCtaRotator) window.__stopCtaRotator();
+              startRotator();
+              window.__ctaRotatorStarted = true;
+            };
+            // Pause rotator when CTA section is out of view; resume on enter back
+            if (window.ScrollTrigger) {
+              window.ScrollTrigger.create({
+                trigger: cta,
+                start: 'top 90%',
+                end: 'bottom 10%',
+                onLeave: () => { if (window.__stopCtaRotator) window.__stopCtaRotator(); },
+                onEnterBack: () => { if (window.__restartCtaRotator) window.__restartCtaRotator(); }
+              });
+            }
           }, "+=0.2");
         }
       }

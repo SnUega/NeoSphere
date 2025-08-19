@@ -191,6 +191,9 @@ margin: 15px auto 0;
 border-radius: 2px;
 }
 
+/* Keep CTA divider stable by reserving space below heading */
+.cta-section .section-title { padding-bottom: 10px; }
+
 .services-grid {
 display: grid;
 grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -363,6 +366,13 @@ font-size: 1.2rem;
 max-width: 700px;
 margin: 0 auto 40px;
 color: var(--light-text);
+}
+
+/* Mobile layout: place rotating word on its own centered line */
+@media (max-width: 768px) {
+  .cta-animated { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .cta-section h2 { font-size: 2.4rem; line-height: 1.15; }
+  .cta-rotator { display: inline-flex; align-items: baseline; line-height: 1.15; min-height: calc(1em * 1.15); }
 }
 
 /* Footer */

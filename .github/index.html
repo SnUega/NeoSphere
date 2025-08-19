@@ -136,6 +136,7 @@
 <section id="web-dev" class="web-dev">
 <div class="container">
 <h2 class="section-title grad-title" data-i18n="webdev.title">We also create websites</h2>
+<h3 class="web-subtitle grad-title" data-i18n="webdev.brand">NeoShop</h3>
 <div class="web-gallery">
   <div class="web-shot"><img src="./img/site-prev-1.png" alt="NEOSHOP preview 1"></div>
   <div class="web-shot"><img src="./img/site-prev-2.png" alt="NEOSHOP preview 2"></div>
@@ -145,13 +146,21 @@
   <a href="https://neoshop.space" target="_blank" rel="noopener" class="web-link" data-i18n="webdev.visit">Open site</a>
   <a href="https://www.facebook.com/profile.php?id=61578800602130" target="_blank" rel="noopener" class="web-link" data-i18n="webdev.facebook">Facebook</a>
 </div>
+<div class="web-action">
+  <a href="#" class="cta-button" data-open="cta-modal" data-i18n="webdev.create">Create a website</a>
+</div>
 </div>
 </section>
 
 <!-- CTA Section -->
 <section class="cta-section">
 <div class="container">
-<h2 data-i18n="cta.title">Ready to change your life?</h2>
+<h2 class="section-title">
+  <span class="cta-animated">
+    <span data-i18n="cta.prefix">Ready to change your</span>
+    <span class="cta-rotator"><span class="rotator-word" data-i18n="cta.key.life">life</span><span class="rotator-qm">?</span></span>
+  </span>
+</h2>
 <p data-i18n="cta.body">Join the ecosystem that solves all your tasks in one place - from household services to professional development</p>
 <a href="#contact" class="cta-button" data-i18n="cta.cta" data-open="cta-modal">Join Now</a>
 </div>
@@ -203,7 +212,11 @@
 <div class="modal-backdrop" data-close></div>
 <div class="modal-window glass">
 <button class="modal-close" type="button" data-close aria-label="Close">×</button>
-<form id="cta-form" class="feedback-form" action="https://formspree.io/f/manbbgzr" method="POST">
+<form id="cta-form" class="feedback-form" method="POST" novalidate>
+<input type="hidden" name="access_key" value="06f2700d-5f2c-4f2e-9667-7de9d40ab80e">
+<input type="hidden" name="subject" value="EcoSphere CTA Form">
+<input type="hidden" name="source" value="EcoSphere">
+<input type="text" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
 <h3 data-i18n="modal.form.title">Submit Application</h3>
 <label>
 <span data-i18n="form.name">Name</span>

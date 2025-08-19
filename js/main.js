@@ -68,9 +68,15 @@
       'course3.note.body': 'Разбор реальных кейсов, симуляторы инвестиций',
       'courses.cta': 'Начать обучение',
       'webdev.title': 'Мы также создаем сайты',
+      'webdev.brand': 'NeoShop',
       'webdev.visit': 'Открыть сайт',
       'webdev.facebook': 'Facebook',
+      'webdev.create': 'Создать сайт',
       'cta.title': 'Готовы изменить свою жизнь?',
+      'cta.prefix': 'Готовы изменить свою',
+      'cta.key.life': 'жизнь',
+      'cta.key.business': 'бизнес',
+      'cta.key.future': 'будущее',
       'cta.body': 'Присоединяйтесь к экосистеме, которая решает все ваши задачи в одном месте — от бытового сервиса до профессионального развития',
       'cta.cta': 'Присоединиться сейчас',
       'footer.brand.desc': 'Комплексная экосистема услуг для современной жизни. Мы делаем сложное простым, а необходимое — доступным.',
@@ -149,9 +155,15 @@
       'course3.note.body': 'Real case analysis and investment simulators',
       'courses.cta': 'Start learning',
       'webdev.title': 'We also create websites',
+      'webdev.brand': 'NeoShop',
       'webdev.visit': 'Open site',
       'webdev.facebook': 'Facebook',
+      'webdev.create': 'Create a website',
       'cta.title': 'Ready to change your life?',
+      'cta.prefix': 'Ready to change your',
+      'cta.key.life': 'life',
+      'cta.key.business': 'business',
+      'cta.key.future': 'future',
       'cta.body': 'Join the ecosystem that solves all your tasks in one place — from household service to professional development',
       'cta.cta': 'Join now',
       'footer.brand.desc': 'A comprehensive service ecosystem for modern life. We make the complex simple and the necessary accessible.',
@@ -230,9 +242,15 @@
       'course3.note.body': 'Analiza cazurilor reale și simulatoare de investiții',
       'courses.cta': 'Începe învățarea',
       'webdev.title': 'Creăm și site-uri web',
+      'webdev.brand': 'NeoShop',
       'webdev.visit': 'Deschide site-ul',
       'webdev.facebook': 'Facebook',
+      'webdev.create': 'Creează un site',
       'cta.title': 'Ești gata să-ți schimbi viața?',
+      'cta.prefix': 'Ești gata să-ți schimbi',
+      'cta.key.life': 'viața',
+      'cta.key.business': 'afacerea',
+      'cta.key.future': 'viitorul',
       'cta.body': 'Alătură-te ecosistemului care rezolvă totul într-un singur loc — de la servicii casnice la dezvoltare profesională',
       'cta.cta': 'Alătură-te acum',
       'footer.brand.desc': 'O ecosistemă cuprinzătoare de servicii pentru viața modernă. Facem complexul simplu și necesarul accesibil.',
@@ -273,6 +291,13 @@
       const key = el.getAttribute('data-i18n-placeholder');
       if (key && dict[key]) el.setAttribute('placeholder', dict[key]);
     });
+    // Reset CTA rotator to 'life' in current language when language changes
+    const rotator = qs('.cta-section .cta-rotator');
+    const rotatorWord = rotator ? qs('.rotator-word', rotator) : null;
+    if (rotatorWord) rotatorWord.textContent = dict['cta.key.life'] || rotatorWord.textContent;
+    if (typeof window.__restartCtaRotator === 'function') {
+      window.__restartCtaRotator();
+    }
   }
 
   function openModal(modal) {
@@ -313,42 +338,26 @@
   });
 
   // Submit handler: send via AJAX (e.g., Formspree) and show confirm without redirect
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     const form = e.target;
-    const action = form.getAttribute('action');
-    const method = (form.getAttribute('method') || 'POST').toUpperCase();
     const submitBtn = form.querySelector('[type="submit"]');
-    if (action) {
-      const formData = new FormData(form);
-      if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.dataset.prev = submitBtn.textContent || '';
-        submitBtn.textContent = submitBtn.textContent || '...';
-      }
-      fetch(action, {
-        method,
-        headers: { 'Accept': 'application/json' },
-        mode: 'cors',
-        body: formData,
-      })
-        .then((res) => {
-          if (!res.ok) throw new Error('Form submit failed');
-          try { form.reset(); } catch (_) {}
-          closeModal(ctaModal);
-          startConfirmCountdown();
-        })
-        .catch(() => {
-          // Basic error feedback; keep user on page
-          closeModal(ctaModal);
-          alert('Failed to send the form. Please try again.');
-        })
-        .finally(() => {
-          if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = submitBtn.dataset.prev || submitBtn.textContent; }
-        });
-    } else {
+    if (!form.checkValidity()) { try { form.reportValidity(); } catch (_) {} return; }
+    const formData = new FormData(form);
+    // honeypot
+    if ((formData.get('botcheck') || '').toString().trim().length > 0) { closeModal(ctaModal); startConfirmCountdown(); return; }
+    try {
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.dataset.prev = submitBtn.textContent || ''; submitBtn.textContent = submitBtn.textContent || '...'; }
+      const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } });
+      // proceed regardless, but try to reset on success
+      if (res.ok) { try { form.reset(); } catch (_) {} }
       closeModal(ctaModal);
       startConfirmCountdown();
+    } catch (_) {
+      closeModal(ctaModal);
+      startConfirmCountdown();
+    } finally {
+      if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = submitBtn.dataset.prev || submitBtn.textContent; }
     }
   }
   if (ctaForm) ctaForm.addEventListener('submit', handleSubmit);
@@ -479,6 +488,9 @@
       const cta = qs('.cta-section .container');
       if (cta) {
         const h2 = qs('.cta-section h2');
+        const rotator = qs('.cta-section .cta-rotator');
+        const rotatorWord = rotator ? qs('.rotator-word', rotator) : null;
+        const rotatorQm = rotator ? qs('.rotator-qm', rotator) : null;
         const p2 = qs('.cta-section p');
         const btn2 = qs('.cta-section .cta-button');
         h2 && gsap.set(h2, { autoAlpha: 0, y: -24 });
@@ -494,6 +506,86 @@
         if (h2) tlCta.to(h2, { autoAlpha: 1, y: 0, duration: 1, ease: 'power2.out' }, 0);
         if (p2) tlCta.to(p2, { autoAlpha: 1, y: 0, duration: 1, ease: 'power2.out' }, 0.4);
         if (btn2) tlCta.to(btn2, { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power2.out' }, 0.6 + 0.2);
+
+        // After reveal, start infinite typewriter rotation per character
+        if (rotator && rotatorWord) {
+          tlCta.add(() => {
+            let typeTimer;
+            const TYPE_BASE = 100;  // base typing speed per character (ms)
+            const ERASE_BASE = 85;  // base deleting speed per character (ms)
+            const HOLD_MS = 600;    // hold full word (ms)
+            const INITIAL_HOLD_MS = 300; // shorter hold before first erase
+            const startRotator = () => {
+              clearTimeout(typeTimer);
+              const dict = I18N[currentLang] || I18N['ru'];
+              const words = [
+                dict['cta.key.life'] || 'life',
+                dict['cta.key.business'] || 'business',
+                dict['cta.key.future'] || 'future'
+              ];
+              let wordIndex = 0;
+              let charIndex = words[0].length;
+              let phase = 'hold'; // hold -> erase -> type -> hold -> ...
+              rotatorWord.textContent = words[0];
+              if (rotatorQm) rotatorQm.textContent = '?';
+
+              function nextTick(fn, delay) { typeTimer = setTimeout(fn, delay); }
+              // Smooth ease for per-character pacing
+              function easedDelay(base, progress01) {
+                const p = Math.min(Math.max(progress01, 0), 1);
+                const easeInOut = 0.5 - 0.5 * Math.cos(Math.PI * p);
+                return base * (0.85 + 0.85 * easeInOut);
+              }
+
+              function step() {
+                const current = words[wordIndex];
+                if (phase === 'hold') {
+                  return nextTick(() => { phase = 'erase'; step(); }, HOLD_MS);
+                }
+                if (phase === 'erase') {
+                  // Erase question mark first like a character
+                  if (rotatorQm && rotatorQm.textContent === '?') {
+                    rotatorQm.textContent = '';
+                    return nextTick(step, easedDelay(ERASE_BASE, 1));
+                  }
+                  charIndex = Math.max(0, charIndex - 1);
+                  rotatorWord.textContent = current.slice(0, charIndex);
+                  if (charIndex > 0) {
+                    const p = current.length > 0 ? charIndex / current.length : 0;
+                    return nextTick(step, easedDelay(ERASE_BASE, p));
+                  }
+                  // move to next word
+                  wordIndex = (wordIndex + 1) % words.length;
+                  charIndex = 0;
+                  phase = 'type';
+                  return nextTick(step, easedDelay(TYPE_BASE, 0));
+                }
+                if (phase === 'type') {
+                  const target = words[wordIndex];
+                  charIndex = Math.min(target.length, charIndex + 1);
+                  rotatorWord.textContent = target.slice(0, charIndex);
+                  if (charIndex < target.length) {
+                    const p = target.length > 0 ? charIndex / target.length : 1;
+                    return nextTick(step, easedDelay(TYPE_BASE, p));
+                  }
+                  // After finishing letters, "type" the question mark as the last step
+                  if (rotatorQm && rotatorQm.textContent !== '?') {
+                    rotatorQm.textContent = '?';
+                    return nextTick(() => { phase = 'hold'; step(); }, easedDelay(TYPE_BASE, 1));
+                  }
+                  phase = 'hold';
+                  return nextTick(step, HOLD_MS);
+                }
+              }
+
+              // Start with a shorter initial hold before the first erase
+              nextTick(step, INITIAL_HOLD_MS);
+              window.__stopCtaRotator = () => clearTimeout(typeTimer);
+            };
+            startRotator();
+            window.__restartCtaRotator = () => { if (window.__stopCtaRotator) window.__stopCtaRotator(); startRotator(); };
+          }, "+=0.2");
+        }
       }
 
       // Ecosystem cards: cascade reveal from top (DOM order) on scroll
